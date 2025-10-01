@@ -53,7 +53,7 @@ async function buildFEApp() {
 	fs.mkdirSync(buildFolder, {recursive: true});
 	shx(`cp index.html ${buildFolder}/index.html`);
 
-	assets(buildFolder);
+	// assets(buildFolder);
 
 	const methodsToDoAfterBundling: (() => void | Promise<any>)[] = [
 		() => {

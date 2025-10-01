@@ -109,13 +109,16 @@ export class SceneManager {
 		this._prevTimeStamp = this._timeStamp;
 		this.needsRender = Convergence.updateActiveOnes(this._timeStamp) || this.needsRender;
 		if (this.needsRender) {
-			this._normalizedCameraPosition = this._controls.update();
-			this._camera.position.set(
-				this._normalizedCameraPosition[0] * this._distance.value,
-				this._normalizedCameraPosition[1] * this._distance.value,
-				this._normalizedCameraPosition[2] * this._distance.value,
-			);
-			this._camera.lookAt(0, 0, 0);
+			if (this._controls.isEnabled) {
+				this._normalizedCameraPosition = this._controls.update();
+				this._camera.position.set(
+					this._normalizedCameraPosition[0] * this._distance.value,
+					this._normalizedCameraPosition[1] * this._distance.value,
+					this._normalizedCameraPosition[2] * this._distance.value,
+				);
+				this._camera.lookAt(0, 0, 0);
+			}
+
 			this._renderer.render(this._scene, this._camera);
 			this.needsRender = false;
 		}

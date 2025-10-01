@@ -335,6 +335,10 @@ export class CameraControls {
 		this._v.reset(this._v.value, this._v.value);
 	}
 
+	public get isEnabled() {
+		return this._isEnabled;
+	}
+
 	public update() {
 		if (this._isEnabled) {
 			if (this._autoRotation[0] !== 0) {
