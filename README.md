@@ -1,1 +1,0 @@
-Live demo: https://soadzoor.github.io/threejs-assignments-2025-10
