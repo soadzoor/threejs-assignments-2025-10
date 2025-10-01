@@ -13,7 +13,7 @@ export abstract class Task {
 		this._sceneManager = sceneManager;
 	};
 
-	public abstract update(deltaTime: number): void;
+	public abstract update(deltaTime: number, elapsedTime: number): void;
 	public abstract enable(): void;
 	public abstract disable(): void;
 }

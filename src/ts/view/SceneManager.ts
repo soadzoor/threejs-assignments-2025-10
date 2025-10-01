@@ -103,7 +103,7 @@ export class SceneManager {
 	private readonly update = (time: number) => {
 		this._timeStamp = performance.now();
 		this._deltaFrame = this._timeStamp - this._prevTimeStamp;
-		this._activeTask.update(this._deltaFrame);
+		this._activeTask.update(this._deltaFrame, this._timeStamp);
 		this._prevTimeStamp = this._timeStamp;
 		this.needsRender = Convergence.updateActiveOnes(this._timeStamp) || this.needsRender;
 		if (this.needsRender) {
@@ -123,6 +123,10 @@ export class SceneManager {
 		this.update(time);
 		this._renderer.setAnimationLoop(this.update);
 	};
+
+	public get camera() {
+		return this._camera;
+	}
 
 	/** Returns the timestamp of the newest render run  */
 	public get timeStamp() {
