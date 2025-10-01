@@ -57,4 +57,8 @@ export class ColorUtils {
 			return opacity === 1 ? `rgb(${r}, ${g}, ${b})` : `rgba(${r}, ${g}, ${b}, ${opacity})`;
 		}
 	}
+
+	public static getRandomColor(): number {
+		return Math.round(Math.random() * 0xffffff);
+	}
 }

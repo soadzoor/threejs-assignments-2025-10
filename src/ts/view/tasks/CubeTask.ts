@@ -12,6 +12,7 @@ export class CubeTask extends Task {
 	}
 
 	public enable(): void {
+		this._sceneManager!.controls.activate();
 		this._sceneManager!.scene.add(this._cube);
 	}
 

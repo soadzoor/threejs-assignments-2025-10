@@ -13,6 +13,7 @@ export class SceneManager {
 	private readonly _camera: PerspectiveCamera;
 	private readonly _controls: CameraControls;
 	private readonly _renderer: WebGLRenderer;
+	private readonly _domElement: HTMLElement;
 	private readonly _distance: BoundedConvergence;
 	private _activeTask: Task = tasks[0];
 	private _normalizedCameraPosition: number[] = [0, 0, 1];
@@ -24,10 +25,11 @@ export class SceneManager {
 	constructor(rootElement: HTMLElement) {
 		this._canvas = document.createElement("canvas");
 		rootElement.appendChild(this._canvas);
+		this._domElement = rootElement;
 		this._scene = new Scene();
 		this._camera = new PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.05, 70);
 		this._distance = new BoundedConvergence(this, 10, 10, 1, 100, Easing.EASE_OUT, Constants.ANIMATION_DURATION);
-		this._controls = new CameraControls(this._canvas.parentElement!, this);
+		this._controls = new CameraControls(this);
 		this._renderer = new WebGLRenderer({
 			canvas: this._canvas,
 			antialias: true,
@@ -124,8 +126,16 @@ export class SceneManager {
 		this._renderer.setAnimationLoop(this.update);
 	};
 
+	public get controls() {
+		return this._controls;
+	}
+
 	public get camera() {
 		return this._camera;
+	}
+
+	public get domElement() {
+		return this._domElement;
 	}
 
 	/** Returns the timestamp of the newest render run  */

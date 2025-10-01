@@ -1,6 +1,6 @@
-import {DoubleSide, FrontSide, Mesh, PlaneGeometry, Vector3} from "three";
-import {Task} from "./Task";
+import {DoubleSide, Mesh, PlaneGeometry, Vector3} from "three";
 import type {SceneManager} from "../SceneManager";
+import {Task} from "./Task";
 import {WaveMaterial} from "./WaveMaterial";
 
 export class WaveTask extends Task {
@@ -19,7 +19,7 @@ export class WaveTask extends Task {
 	}
 
 	public enable(): void {
-		
+		this._sceneManager!.controls.activate();
 		this._sceneManager!.scene.add(this._plane);
 	}
 

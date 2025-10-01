@@ -65,7 +65,7 @@ export class CameraControls {
 	private _timeoutId: number = -1;
 	private _dampOnPointerUp: boolean = false;
 
-	private _enabled: boolean = false;
+	private _isEnabled: boolean = false;
 	private _autoRotation: number[] = [0, 0];
 
 	private readonly SENSITIVITY = 1.2;
@@ -75,8 +75,8 @@ export class CameraControls {
 		click: Signal.create<{clientX: number; cientY: number}>(),
 	};
 
-	constructor(domElement: HTMLElement, sceneManager: SceneManager) {
-		this._domElement = domElement;
+	constructor(sceneManager: SceneManager) {
+		this._domElement = sceneManager.domElement;
 		this._sceneManager = sceneManager;
 
 		this._u = new BoundedConvergence(this._sceneManager, 0, 0, -Infinity, Infinity, Easing.EASE_OUT, Constants.DAMPING_DURATION);
@@ -290,8 +290,8 @@ export class CameraControls {
 	}
 
 	public activate() {
-		if (!this._enabled) {
-			this._enabled = true;
+		if (!this._isEnabled) {
+			this._isEnabled = true;
 			this.setUVFromSphereSufracePoint(this._cameraNormalizedPosition);
 
 			this._domElement.addEventListener("mousedown", this.onMouseDown);
@@ -308,8 +308,8 @@ export class CameraControls {
 	}
 
 	public deactivate() {
-		if (this._enabled) {
-			this._enabled = false;
+		if (this._isEnabled) {
+			this._isEnabled = false;
 			this._isPointerDown = false;
 
 			this._domElement.classList.remove("rotating");
@@ -336,7 +336,7 @@ export class CameraControls {
 	}
 
 	public update() {
-		if (this._enabled) {
+		if (this._isEnabled) {
 			if (this._autoRotation[0] !== 0) {
 				this._u.reset(
 					this._u.end + this._autoRotation[0] * this._sceneManager.deltaFrame,

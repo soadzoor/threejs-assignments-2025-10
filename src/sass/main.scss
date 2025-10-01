@@ -51,6 +51,10 @@ body {
 	display: flex;
 	touch-action: none;
 	cursor: grab;
+
+	&.drawingCursor {
+		cursor: crosshair;
+	}
 }
 
 #playGround.rotating {

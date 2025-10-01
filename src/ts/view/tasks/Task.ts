@@ -11,7 +11,7 @@ export abstract class Task {
 
 	public init(sceneManager: SceneManager): void {
 		this._sceneManager = sceneManager;
-	};
+	}
 
 	public abstract update(deltaTime: number, elapsedTime: number): void;
 	public abstract enable(): void;
