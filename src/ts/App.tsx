@@ -33,7 +33,8 @@ export const App = (props: IAppProps) => {
 					<button
 						key={task.name}
 						className={task === activeTask ? "active" : ""}
-						onClick={() => setActiveTask(task)}
+						onMouseDown={() => setActiveTask(task)}
+						onTouchStart={() => setActiveTask(task)}
 					>
 						Task {index + 1}
 					</button>
